@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <form action="javascript:processPurchase()">
+        <label for="customerName">Your name:</label><br>
+        <input type="text" id="customerName"><br><br>
+        <label for="airTix">Number of airline tickets to purchase:</label><br>
+        <input type="text" id="airTix" value="0"><br><br>
+        <label for="hotelNights">Number of nights in the hotel:</label><br>
+        <input type="text" id="hotelNights" value="0"><br><br>
+        <label for="adventureTix">Number of adventure packages to purchase:</label><br>
+        <input type="text" id="adventureTix" value="0"><br><br>
+        <label for="discountCode">Discount code to apply:</label><br>
+        <input type="text" id="discountCode"><br><br>
+        <input type="submit" value="calculate total price">
+    </form>
+    <br>
+    <div id="the-bill">
+
+    </div>
+</body>
+</html>
