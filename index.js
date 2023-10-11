@@ -1,6 +1,6 @@
 
 
-const discountCode = 'adventure50';
+const discountCodes = ['adventure50', 'travel50', 'vacation50'];
 const airPrice = 199.99;
 const hotelPrice = 124.74;
 const adventurePrice = 79.99;
@@ -21,10 +21,13 @@ function processPurchase () {
     let customerName = document.getElementById("customerName").value;
     let div = document.getElementById("the-bill");
 
-    if (document.getElementById("discountCode").value) {
-        hasDiscountCode = true;
+    // check for valid discount code
+    for (const element of discountCodes) {
+        if (document.getElementById("discountCode").value == element) {
+            hasDiscountCode = true;
+        }
     }
-    
+
     if (hasDiscountCode) {
         airTotal = discSubtotal (airTix, airPrice);
         hotelTotal = discSubtotal (hotelNights, hotelPrice);
@@ -45,6 +48,8 @@ function processPurchase () {
     let taxes =  Math.round((total * taxRate) * 100) / 100;
     let grandTotal = Math.round((total + taxes) * 100) / 100;total + taxes;
 
+    //reset the discount code status to false in case changes are made by user
+    hasDiscountCode = false;
     //clear any contents in the bill and display new totals
     div.innerHTML ="";
     div.innerHTML = "Thank you " + customerName + ". Here are your totals:" +
