@@ -7,11 +7,7 @@ const adventurePrice = 79.99;
 const taxRate = 0.06;
 let hasDiscountCode = false;
 
-// check discount code validity
-
-
 function processPurchase () {
-
     let airTix = Number(document.getElementById("airTix").value);
     let hotelNights = Number(document.getElementById("hotelNights").value);
     let adventureTix = Number(document.getElementById("adventureTix").value);
@@ -28,17 +24,20 @@ function processPurchase () {
         }
     }
 
+    // calculate subtotals for user with valid discount code
     if (hasDiscountCode) {
         airTotal = discSubtotal (airTix, airPrice);
         hotelTotal = discSubtotal (hotelNights, hotelPrice);
         adventureTotal = discSubtotal (adventureTix, adventurePrice);
     }
+    // calculate subtotals for user without discount code
     else {
         airTotal = airTix * airPrice;
         hotelTotal = hotelNights * hotelPrice;
         adventureTotal = adventureTix * adventurePrice;
     }
 
+    //total of all purchased items before taxes
     let total = airTotal + hotelTotal + adventureTotal;
 
     //round to nearest cent
@@ -48,6 +47,7 @@ function processPurchase () {
     let taxes =  Math.round((total * taxRate) * 100) / 100;
     let grandTotal = Math.round((total + taxes) * 100) / 100;total + taxes;
 
+    //print results on the page
     //reset the discount code status to false in case changes are made by user
     hasDiscountCode = false;
     //clear any contents in the bill and display new totals
@@ -61,9 +61,7 @@ function processPurchase () {
         '<br> &nbsp; &nbsp;' + "Grand total: " + grandTotal;
 }
 
-
 // Calculates total price for all items purchased in the category. Applies 50% discount to items in groups of 3. e.g. if customer purchases 8 items, discount will be applied to six and the remaining 2 will be full price: ((3 * .5) + (3 * .5) + (2 * 1))
-
 function discSubtotal (purchase, price) {
     let subTotal = 0;
     while (purchase > 0) {
@@ -77,5 +75,4 @@ function discSubtotal (purchase, price) {
         }
     }
     return Math.round(subTotal * 100) / 100;   
-    
 }
